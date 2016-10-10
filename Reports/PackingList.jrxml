@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+    <property name="ireport.zoom" value="2.357947691000002"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="dd" class="java.lang.String">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[select b.order_no,b.student_name,c.class,a.material_total,a.item_total,a.grand_total from trn_packing_list a join mst_student b on a.stsl_no = b.stsl_no join mst_class c on b.class_no = c.class_no where a.delivery_date = $P{dd} and a.flag!='D' and b.flag!='D' and c.flag!='D']]>
+    </queryString>
+    <field name="order_no" class="java.lang.Integer"/>
+    <field name="student_name" class="java.lang.String"/>
+    <field name="class" class="java.lang.String"/>
+    <field name="material_total" class="java.math.BigDecimal"/>
+    <field name="item_total" class="java.math.BigDecimal"/>
+    <field name="grand_total" class="java.math.BigDecimal"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="3" splitType="Stretch"/>
+    </title>
+    <pageHeader>
+        <band height="3" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="28" splitType="Stretch">
+            <line>
+                <reportElement  x="1" y="5" width="553" height="1"/>
+            </line>
+            <line>
+                <reportElement  x="1" y="24" width="553" height="1"/>
+            </line>
+            <staticText>
+                <reportElement  x="65" y="6" width="153" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Student Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement  x="228" y="6" width="47" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Class]]></text>
+            </staticText>
+            <staticText>
+                <reportElement  x="286" y="6" width="71" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Material Total]]></text>
+            </staticText>
+            <staticText>
+                <reportElement  x="382" y="6" width="63" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Item Total]]></text>
+            </staticText>
+            <staticText>
+                <reportElement  x="474" y="6" width="67" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Grand Total]]></text>
+            </staticText>
+            <staticText>
+                <reportElement  x="7" y="7" width="47" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Order No.]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="25" splitType="Stretch">
+            <textField>
+                <reportElement  x="7" y="3" width="47" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{order_no}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="66" y="3" width="153" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{student_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="229" y="3" width="52" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{class}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="383" y="3" width="63" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{item_total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="287" y="3" width="71" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{material_total}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="473" y="3" width="67" height="20"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="2" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="23" splitType="Stretch">
+            <textField>
+                <reportElement  x="473" y="1" width="80" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement  x="249" y="1" width="100" height="20"/>
+                <textElement textAlignment="Justified" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="3" splitType="Stretch"/>
+    </summary>
+</jasperReport>
